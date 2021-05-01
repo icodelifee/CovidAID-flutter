@@ -27,7 +27,8 @@ dependencies:
   google_fonts: ^2.0.0
   gap: ^2.0.0
   cupertino_icons: ^1.0.2
-
+  your_splash: ^0.2.2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
