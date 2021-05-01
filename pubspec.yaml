@@ -28,6 +28,7 @@ dependencies:
   gap: ^2.0.0
   cupertino_icons: ^1.0.2
   your_splash: ^0.2.2
+  lint: ^1.5.3
   
 dev_dependencies:
   flutter_test:
