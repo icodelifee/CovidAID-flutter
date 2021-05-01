@@ -8,6 +8,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      defaultTransition: Transition.cupertino,
       title: 'Life By Corona Safe',
       theme: ThemeData(
         primarySwatch: Colors.blue,
