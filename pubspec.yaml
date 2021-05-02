@@ -29,6 +29,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   your_splash: ^0.2.2
   lint: ^1.5.3
+  firebase_core: ^1.1.0
+  firebase_auth: ^1.1.2
   
 dev_dependencies:
   flutter_test:

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lifecoronasafe/ui/Homepage/Homepage.dart';
-// import 'package:lifecoronasafe/ui/Homepage/Homepage.dart';
 import 'package:lifecoronasafe/ui/Splashscreen/Splashscreen.dart' as splash;
-// ignore: import_of_legacy_library_into_null_safe
+import 'package:lifecoronasafe/ui/pages/home_page.dart';
+import 'package:lifecoronasafe/ui/pages/login_page.dart';
 import 'package:your_splash/your_splash.dart';
 
 class App extends StatelessWidget {
@@ -25,9 +24,9 @@ class App extends StatelessWidget {
       theme: themeData,
       getPages: _pages,
       home: SplashScreen.timed(
-        route: MaterialPageRoute(builder: (_) => HomePage()),
+        route: MaterialPageRoute(builder: (_) => LoginScreen()),
         seconds: 3,
-        body: HomePage(),
+        body: LoginScreen(),
       ),
     );
   }
