@@ -31,6 +31,7 @@ dependencies:
   lint: ^1.5.3
   firebase_core: ^1.1.0
   firebase_auth: ^1.1.2
+  cloud_firestore: ^1.0.7
   
 dev_dependencies:
   flutter_test:
