@@ -26,8 +26,8 @@ class App extends StatelessWidget {
       getPages: _pages,
       home: SplashScreen.timed(
         route: MaterialPageRoute(builder: (_) => HomePage()),
-        seconds: 3,
-        body: HomePage(),
+        seconds: 4,
+        body: splash.SplashScreen(),
       ),
     );
   }
