@@ -24,23 +24,17 @@ class FirebaseAuthentication {
     }
   }
 
-  static Future<void> observeUserAuthState(BuildContext context) async {
+  static Future<void> observeUserAuthState() async {
     Text snackbarText;
     firebaseAuthInstance.authStateChanges().listen((User? user) {
       if (user == null) {
         debugPrint('User is not signed in!');
-        snackbarText = const Text('User not signed in');
+        snackbarText = Text('Some error occured while registering your device');
       } else {
         debugPrint('User is signed in!');
-        try {
-          snackbarText = Text('Signed in anonymously\n UID: ${user.uid}');
-        } catch (e) {
-          debugPrint(e.toString());
-          snackbarText = Text(e.toString());
-        }
+        snackbarText = Text('This device has been connected to database');
       }
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: snackbarText));
+      Get.showSnackbar(GetBar(messageText: snackbarText));
     });
   }
 }
