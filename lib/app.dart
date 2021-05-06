@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lifecoronasafe/ui/Homepage/Homepage.dart';
+import 'package:lifecoronasafe/firebase/firebase_authentication.dart';
 import 'package:lifecoronasafe/ui/Notification/NotificationSettings.dart';
-// import 'package:lifecoronasafe/ui/Homepage/Homepage.dart';
-import 'package:lifecoronasafe/ui/Splashscreen/Splashscreen.dart' as splash;
-// ignore: import_of_legacy_library_into_null_safe
+import 'package:lifecoronasafe/ui/Splashscreen/splash_screen.dart' as splash;
+import 'package:lifecoronasafe/ui/pages/home_page.dart';
 import 'package:your_splash/your_splash.dart';
 
 class App extends StatelessWidget {
@@ -20,6 +19,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAuthentication.signInAnonymously();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       defaultTransition: transition,
@@ -29,7 +29,7 @@ class App extends StatelessWidget {
       home: SplashScreen.timed(
         route: MaterialPageRoute(builder: (_) => HomePage()),
         seconds: 3,
-        body: HomePage(),
+        body: Container(),
       ),
     );
   }
