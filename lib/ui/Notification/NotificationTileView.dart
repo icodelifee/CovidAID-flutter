@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:lifecoronasafe/models/NotificationQueries.dart';
 
 class NotificationTile extends StatefulWidget {
-  dynamic data;
+  Map<String, dynamic> data;
   NotificationTile({required this.data});
-
   @override
   _NotificationTileState createState() => _NotificationTileState();
 }
 
 class _NotificationTileState extends State<NotificationTile> {
-  bool _switchValue = true;
+  late NotificationQueriesModel data;
   @override
   void initState() {
-    // TODO: implement initState
-    print(widget.data);
+    data = NotificationQueriesModel.fromJson(widget.data);
     super.initState();
   }
 
@@ -47,8 +45,8 @@ class _NotificationTileState extends State<NotificationTile> {
                 Container(
                   width: Get.width / 2,
                   child: Text(
-                    widget.data['resource'].toString().toUpperCase(),
-                    style: TextStyle(
+                    data.resource.toUpperCase(),
+                    style: const TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w900,
                     ),
@@ -58,10 +56,10 @@ class _NotificationTileState extends State<NotificationTile> {
                 Container(
                     width: Get.width / 2,
                     child: Text(
-                      '${widget.data['city'].toString().toUpperCase()}, ${widget.data['state'].toString().toUpperCase()}',
+                      '${data.district.toUpperCase()}, ${data.state.toUpperCase()}',
                       maxLines: 3,
                       softWrap: true,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 11,
                       ),
                     )),
@@ -70,19 +68,17 @@ class _NotificationTileState extends State<NotificationTile> {
             Column(
               children: [
                 CupertinoSwitch(
-                  value: widget.data['active'] == true ? true : false,
-                  onChanged: (bool value) {
-                    setState(() {
-                      widget.data['active'] = value;
+                  value: data.active,
+                  onChanged: (bool value) async {
+                      // Get.snackbar(
+                      //   "title",
+                      //   "content",
+                      // );
+                    setState((){
+                      data.active = value;
                     });
                   },
                 ),
-                // Switch(
-                //   value: false,
-                //   onChanged: (value) {
-                //     print(value);
-                //   },
-                // ),
               ],
             )
           ],

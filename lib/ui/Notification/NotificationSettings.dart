@@ -1,4 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lifecoronasafe/firebase/firestore_db.dart';
+import 'package:lifecoronasafe/models/NotificationQueries.dart';
+
 import 'NotificationTileView.dart';
 
 class NotificationSettings extends StatefulWidget {
@@ -7,14 +11,7 @@ class NotificationSettings extends StatefulWidget {
 }
 
 class _NotificationSettingsState extends State<NotificationSettings> {
-  final dummyData = [
-    {'resource': 'OXYGEN', 'state': 'Hyderabad', 'city': 'Telangana', 'active': true},
-    {'resource': 'HOSPITAL', 'state': 'KERALA', 'city': 'KOCHI', 'active': false},
-    {'resource': 'MEDICINE', 'state': 'KERALA', 'city': 'KOCHI', 'active': true},
-    {'resource': 'AMBULANCE', 'state': 'KERALA', 'city': 'KOCHI', 'active': true},
-    {'resource': 'OXYGEN', 'state': 'KERALA', 'city': 'KOCHI', 'active': true},
-  ];
-
+  final uid = '1QdDzFW5w4VvJ4dft0oU';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,23 +30,43 @@ class _NotificationSettingsState extends State<NotificationSettings> {
         },
         child: const Icon(Icons.add),
       ),
-      body: ListView.builder(
-        itemCount: dummyData.length,
-        itemBuilder: (context, index){
-          final data = dummyData[index];
-          return NotificationTile(data: data,);
-        },
-      ),
-      // body: ListView(
-      //   children: [
-      //     NotificationTile(),
-      //     NotificationTile(),
-      //     NotificationTile(),
-      //     NotificationTile(),
-      //     NotificationTile(),
-      //     NotificationTile(),
-      //   ],
-      // ),
+      body: FutureBuilder<QuerySnapshot>(
+          future: FireStoreDb.fireStoreInstance
+              .collection('Users')
+              .doc(uid)
+              .collection('queries')
+              .get(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return const Center(
+                child: Text('Something went wrong'),
+              );
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            final queriesData = snapshot.data?.docs;
+            if (queriesData == null || queriesData.isEmpty) {
+              return const Center(
+                child: Text('No Notification subscribed'),
+              );
+            }
+            return ListView.builder(
+              itemCount: snapshot.data?.docs.length,
+              itemBuilder: (context, index) {
+                return NotificationTile(
+                  data: {
+                    'docid': queriesData[index].id,
+                    'uid': uid,
+                    ...queriesData[index].data()
+                  },
+                );
+              },
+            );
+          }),
     );
   }
 }
