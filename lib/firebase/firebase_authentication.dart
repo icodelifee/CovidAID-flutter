@@ -18,7 +18,7 @@ class FirebaseAuthentication {
       userCredential = await firebaseAuthInstance.signInAnonymously();
       final String token =
           (await FirebaseMessaging.instance.getToken(vapidKey: VAPID_KEY))!;
-      FireStoreDb.addUser(token);
+      FireStoreDb.addUser(firebaseAuthInstance.currentUser!.uid, token);
     } catch (e) {
       print(e);
     }
