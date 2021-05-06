@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "989290822335",
+    "project_id": "coronasafe-life",
+    "storage_bucket": "coronasafe-life.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989290822335:android:3524db54c8a96bb8b5640a",
+        "android_client_info": {
+          "package_name": "com.life.coronasafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989290822335-smr85c5qq78hv19iqpruvoa5kimvlp7q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxuripCFXD_wKrV-QCHrTEmYaoGwk7JmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989290822335-smr85c5qq78hv19iqpruvoa5kimvlp7q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
