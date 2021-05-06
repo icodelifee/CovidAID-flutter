@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:lifecoronasafe/firebase/firestore_db.dart';
+import 'package:lifecoronasafe/data/firebase/firestore_db.dart';
 
 class FirebaseAuthentication {
   static FirebaseAuth get firebaseAuthInstance {

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lifecoronasafe/firebase/firebase_authentication.dart';
+import 'package:lifecoronasafe/data/firebase/firebase_authentication.dart';
 import 'package:lifecoronasafe/ui/Splashscreen/splash_screen.dart' as splash;
 import 'package:lifecoronasafe/ui/homepage/home_page.dart';
-import 'package:your_splash/your_splash.dart';
 
 class App extends StatelessWidget {
   final List<GetPage> _pages = [
