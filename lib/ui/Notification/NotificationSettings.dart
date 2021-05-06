@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lifecoronasafe/firebase/firestore_db.dart';
-import 'package:lifecoronasafe/models/NotificationQueries.dart';
 
 import 'NotificationTileView.dart';
 
@@ -11,6 +10,7 @@ class NotificationSettings extends StatefulWidget {
 }
 
 class _NotificationSettingsState extends State<NotificationSettings> {
+  // TODO: Update it to currentloggedin user's firebase uid
   final uid = '1QdDzFW5w4VvJ4dft0oU';
   @override
   Widget build(BuildContext context) {

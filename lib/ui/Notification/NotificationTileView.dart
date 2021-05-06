@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:lifecoronasafe/firebase/firestore_db.dart';
 import 'package:lifecoronasafe/models/NotificationQueries.dart';
 
 class NotificationTile extends StatefulWidget {
@@ -13,6 +14,7 @@ class NotificationTile extends StatefulWidget {
 
 class _NotificationTileState extends State<NotificationTile> {
   late NotificationQueriesModel data;
+  bool _updateLoading = false;
   @override
   void initState() {
     data = NotificationQueriesModel.fromJson(widget.data);
@@ -67,18 +69,42 @@ class _NotificationTileState extends State<NotificationTile> {
             ),
             Column(
               children: [
-                CupertinoSwitch(
-                  value: data.active,
-                  onChanged: (bool value) async {
-                      // Get.snackbar(
-                      //   "title",
-                      //   "content",
-                      // );
-                    setState((){
-                      data.active = value;
-                    });
-                  },
-                ),
+                if (_updateLoading)
+                  const CircularProgressIndicator()
+                else
+                  CupertinoSwitch(
+                    value: data.active,
+                    onChanged: (bool value) async {
+                      setState(() {
+                        _updateLoading = true;
+                      });
+                      try {
+                        final String result =
+                            await FireStoreDb.updateNotificationSetting(
+                          data.uid,
+                          data.docid,
+                          value,
+                        );
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(SnackBar(content: Text(result)));
+                        if (result == 'Update Success') {
+                          setState(() {
+                            data.active = value;
+                          });
+                        }
+                      } catch (e) {
+                        Get.snackbar(
+                          e.toString(),
+                          '',
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      } finally {
+                        setState(() {
+                          _updateLoading = false;
+                        });
+                      }
+                    },
+                  ),
               ],
             )
           ],

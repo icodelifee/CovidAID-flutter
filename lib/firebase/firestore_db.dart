@@ -12,4 +12,19 @@ class FireStoreDb {
       'token': token
     }).catchError((error) => print('Failed to add token: $error'));
   }
+
+  static Future<String> updateNotificationSetting(
+      String uid, String docid, bool active) async {
+    try {
+      fireStoreInstance
+          .collection('Users')
+          .doc(uid)
+          .collection('queries')
+          .doc(docid)
+          .update({'active': active, 'lastmodified': DateTime.now()});
+      return 'Update Success';
+    } catch (e) {
+      return e.toString();
+    }
+  }
 }
