@@ -20,7 +20,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         defaultTransition: transition,
-        title: 'Life By Corona Safe',
+        title: 'covidresources',
         theme: themeData,
         getPages: _pages,
         home: HomePage());

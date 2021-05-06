@@ -19,6 +19,7 @@ class FirebaseAuthentication {
       final String token = (await FirebaseMessaging.instance
           .getToken(vapidKey: Constants.VAPID_KEY))!;
       FireStoreDb.addUser(firebaseAuthInstance.currentUser!.uid, token);
+      debugPrint('User is signed in!');
     } catch (e) {
       debugPrint(e.toString());
     }
