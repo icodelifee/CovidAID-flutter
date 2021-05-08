@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:lifecoronasafe/firebase/firestore_db.dart';
+import 'package:lifecoronasafe/data/firebase/firestore_db.dart';
 import 'package:lifecoronasafe/models/NotificationQueries.dart';
 
 class NotificationTile extends StatefulWidget {

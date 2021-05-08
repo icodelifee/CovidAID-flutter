@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:lifecoronasafe/firebase/firestore_db.dart';
+import 'package:lifecoronasafe/data/firebase/firestore_db.dart';
 
 import 'NotificationTileView.dart';
 

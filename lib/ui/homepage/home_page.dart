@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
               icon: const Icon(Icons.notifications_active_outlined),
-              onPressed: () {})
+              onPressed: () => Get.toNamed('/notification_settings'))
         ],
       ),
       drawer: const Drawer(),
