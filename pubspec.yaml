@@ -33,10 +33,13 @@ dependencies:
   firebase_core: ^1.1.0
   firebase_messaging: ^9.1.3
   gap: ^2.0.0
+  fuzzywuzzy: ^0.1.6
   get: ^4.1.4
   google_fonts: ^2.0.0
   lint: ^1.5.3
+  dio_cache_interceptor: ^2.3.1
   your_splash: ^0.2.2
+  flutter_typeahead: ^3.1.3
 
 dev_dependencies:
   flutter_test:
