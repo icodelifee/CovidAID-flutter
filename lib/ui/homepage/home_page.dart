@@ -1,12 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:lifecoronasafe/data/repository/api_repository_impl.dart';
-import 'package:lifecoronasafe/data/repository/api_respository.dart';
-import 'package:lifecoronasafe/theme/app_theme.dart';
 import 'package:lifecoronasafe/ui/homepage/widgets/homepage_carousel.dart';
 import 'package:lifecoronasafe/ui/homepage/widgets/place_textfield.dart';
 import 'package:lifecoronasafe/ui/homepage/widgets/resource_selector.dart';
@@ -43,7 +38,7 @@ class HomePage extends StatelessWidget {
                   Gap(15),
                   ResourceSelector(),
                   Gap(15),
-                  VerfiedSwitch()
+                  VerifiedSwitch()
                 ],
               ),
             ),

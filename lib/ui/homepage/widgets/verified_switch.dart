@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class VerfiedSwitch extends StatelessWidget {
-  const VerfiedSwitch({
+class VerifiedSwitch extends StatelessWidget {
+  const VerifiedSwitch({
     Key? key,
   }) : super(key: key);
 
