@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lifecoronasafe/firebase/firebase_authentication.dart';
+import 'package:lifecoronasafe/data/firebase/firebase_authentication.dart';
 import 'package:lifecoronasafe/ui/Homepage/Homepage.dart';
 import 'package:lifecoronasafe/ui/Notification/NotificationSettings.dart';
 import 'package:lifecoronasafe/ui/Splashscreen/splash_screen.dart' as splash;
@@ -21,16 +21,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     FirebaseAuthentication.signInAnonymously();
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      defaultTransition: transition,
-      title: 'Life By Corona Safe',
-      theme: themeData,
-      getPages: _pages,
-      home: SplashScreen.timed(
-        route: MaterialPageRoute(builder: (_) => HomePage()),
-        seconds: 3,
-        body: HomePage(),
-      ),
-    );
+        debugShowCheckedModeBanner: false,
+        defaultTransition: transition,
+        title: 'covidresources',
+        theme: themeData,
+        getPages: _pages,
+        home: HomePage());
   }
 }

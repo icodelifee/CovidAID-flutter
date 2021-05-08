@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:lifecoronasafe/firebase/firestore_db.dart';
-import 'package:lifecoronasafe/models/covid_resource_model.dart';
+import 'package:lifecoronasafe/data/firebase/firestore_db.dart';
+import 'package:lifecoronasafe/data/models/covid_resource_model.dart';
 
 class FireStorePage extends StatefulWidget {
   @override

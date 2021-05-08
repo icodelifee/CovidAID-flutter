@@ -1,11 +1,5 @@
-// To parse this JSON data, do
-//
-//     final covidResourceModel = covidResourceModelFromJson(jsonString);
-
 class CovidResources {
   CovidResources({required this.resources});
-
-  List<CovidResourceModel> resources;
 
   factory CovidResources.fromJson(Map<String, dynamic> parsedJson) {
     final list = parsedJson['data'] as List;
@@ -16,6 +10,8 @@ class CovidResources {
 
     return CovidResources(resources: resourceList);
   }
+
+  List<CovidResourceModel> resources;
 }
 
 class CovidResourceModel {
