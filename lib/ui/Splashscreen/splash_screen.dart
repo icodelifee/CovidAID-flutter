@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lifecoronasafe/ui/Splashscreen/Widgets/life_logo.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -9,9 +8,7 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(20),
-        child: Stack(children: [
-          LifeLogo(),
-        ]),
+        child: Stack(children: []),
       ),
     );
   }
