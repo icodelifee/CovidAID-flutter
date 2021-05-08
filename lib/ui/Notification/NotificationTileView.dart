@@ -6,8 +6,8 @@ import 'package:lifecoronasafe/data/firebase/firestore_db.dart';
 import 'package:lifecoronasafe/models/NotificationQueries.dart';
 
 class NotificationTile extends StatefulWidget {
-  Map<String, dynamic> data;
-  NotificationTile({required this.data});
+  final Map<String, dynamic> data;
+  const NotificationTile({required this.data});
   @override
   _NotificationTileState createState() => _NotificationTileState();
 }
@@ -44,7 +44,7 @@ class _NotificationTileState extends State<NotificationTile> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                   width: Get.width / 2,
                   child: Text(
                     data.resource.toUpperCase(),
@@ -55,7 +55,7 @@ class _NotificationTileState extends State<NotificationTile> {
                   ),
                 ),
                 const Gap(5),
-                Container(
+                SizedBox(
                     width: Get.width / 2,
                     child: Text(
                       '${data.district.toUpperCase()}, ${data.state.toUpperCase()}',

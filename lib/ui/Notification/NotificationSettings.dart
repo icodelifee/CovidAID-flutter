@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lifecoronasafe/data/firebase/firestore_db.dart';
 
@@ -10,8 +11,7 @@ class NotificationSettings extends StatefulWidget {
 }
 
 class _NotificationSettingsState extends State<NotificationSettings> {
-  // TODO: Update it to currentloggedin user's firebase uid
-  final uid = '1QdDzFW5w4VvJ4dft0oU';
+  final uid = FirebaseAuth.instance.currentUser!.uid;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print('Floating Action Button');
+          debugPrint('Floating Action Button');
         },
         child: const Icon(Icons.add),
       ),
