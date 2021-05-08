@@ -87,9 +87,6 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Widget getAppBarWidget(double scroll) {
-    setState(() {
-      if (scroll != 0) {}
-    });
     if (scroll == 0) {
       return Align(
         alignment: Alignment.bottomCenter,
