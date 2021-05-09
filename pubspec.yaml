@@ -24,23 +24,24 @@ dependencies:
   flutter:
     sdk: flutter
   auto_size_text: ^3.0.0-nullsafety.0
+  awesome_notifications: ^0.0.6+5
   carousel_slider: ^4.0.0-nullsafety.0
   cloud_firestore: ^1.0.7
   cupertino_icons: ^1.0.2
   customizable_space_bar: ^0.2.0
   dio: ^4.0.0
+  dio_cache_interceptor: ^2.3.1
   firebase_auth: ^1.1.2
   firebase_core: ^1.1.0
   firebase_messaging: ^9.1.3
-  gap: ^2.0.0
+  flutter_typeahead: ^3.1.3
   fuzzywuzzy: ^0.1.6
+  gap: ^2.0.0
   get: ^4.1.4
   google_fonts: ^2.0.0
   lint: ^1.5.3
-  dio_cache_interceptor: ^2.3.1
+  url_launcher: ^6.0.3
   your_splash: ^0.2.2
-  flutter_typeahead: ^3.1.3
-  awesome_notifications: ^0.0.6+5
 
 dev_dependencies:
   flutter_test:
