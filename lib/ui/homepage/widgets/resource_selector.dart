@@ -16,6 +16,7 @@ class ResourceSelector extends GetView<ResourcesController> {
               onChanged: (String? val) {
                 hstate.resource.value = val!;
               },
+              value: state!.first.url,
               hint: Text('Select Resource'),
               decoration: AppTheme.inputDecoration(''),
               items: state!
