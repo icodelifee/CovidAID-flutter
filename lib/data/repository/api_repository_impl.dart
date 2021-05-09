@@ -18,7 +18,7 @@ class APIRepositoryImpl implements APIRepository {
     try {
       final response = await Dio().get(
         '${Constants.lifeAPI}states.json',
-        options: options.copyWith(policy: CachePolicy.refresh).toOptions(),
+        options: options.copyWith(policy: CachePolicy.request).toOptions(),
       );
       if (response.statusCode == 200) {
         final dataMap = response.data as Map<String, dynamic>;
@@ -29,7 +29,7 @@ class APIRepositoryImpl implements APIRepository {
         searchList = extractAll(
           query: query,
           choices: searchList,
-          cutoff: 90,
+          cutoff: 70,
         ).map((e) => e.choice).toList();
       }
     } catch (e) {
