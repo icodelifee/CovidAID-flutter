@@ -3,7 +3,10 @@ import 'package:get/get.dart';
 import 'package:lifecoronasafe/data/firebase/firestore_db.dart';
 import 'package:lifecoronasafe/models/resource.dart';
 
-class HomePageViewModel extends GetxController {}
+class HomePageViewModel extends GetxController {
+  RxString resource = RxString('');
+  RxBool verified = RxBool(false);
+}
 
 class ResourcesController extends GetxController
     with StateMixin<List<Resource>> {

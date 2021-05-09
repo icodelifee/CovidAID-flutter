@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lifecoronasafe/data/firebase/firestore_db.dart';
 
 import 'NotificationTileView.dart';
@@ -19,15 +21,12 @@ class _NotificationSettingsState extends State<NotificationSettings> {
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text(
-          'Notification Settings',
-          style: TextStyle(color: Colors.black),
-        ),
+        title: Text('Notification Settings',
+            style: GoogleFonts.poppins(
+                color: Colors.black, fontWeight: FontWeight.bold)),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          debugPrint('Floating Action Button');
-        },
+        onPressed: () {},
         child: const Icon(Icons.add),
       ),
       body: FutureBuilder<QuerySnapshot>(

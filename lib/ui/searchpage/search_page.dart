@@ -3,23 +3,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lifecoronasafe/theme/app_theme.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage(
-      {Key? key,
-      this.state,
-      this.district,
-      this.resource,
-      this.isVerified,
-      this.showAlerts})
-      : super(key: key);
+  const SearchPage({
+    Key? key,
+    this.state,
+    this.district,
+    this.resource,
+    this.isVerified,
+  }) : super(key: key);
   final String? state;
   final String? district;
   final String? resource;
   final bool? isVerified;
-  final bool? showAlerts;
 
   @override
   _SearchPageState createState() => _SearchPageState();
