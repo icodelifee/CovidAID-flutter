@@ -6,7 +6,7 @@ import 'package:lifecoronasafe/data/firebase/firestore_db.dart';
 import 'package:lifecoronasafe/models/NotificationQueries.dart';
 
 class NotificationTile extends StatefulWidget {
-  final Map<String, dynamic> data;
+  final NotificationQueriesModel data;
   const NotificationTile({required this.data});
   @override
   _NotificationTileState createState() => _NotificationTileState();
@@ -17,7 +17,7 @@ class _NotificationTileState extends State<NotificationTile> {
   bool _updateLoading = false;
   @override
   void initState() {
-    data = NotificationQueriesModel.fromJson(widget.data);
+    data = widget.data;
     super.initState();
   }
 
