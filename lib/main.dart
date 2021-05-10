@@ -40,5 +40,5 @@ Future<void> main() async {
       ));
     }
   });
-  runApp(DevicePreview(enabled: !kReleaseMode, builder: (context) => App()));
+  runApp(App());
 }
