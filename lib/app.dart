@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +22,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     FirebaseAuthentication.signInAnonymously();
     return GetMaterialApp(
+      locale: DevicePreview.locale(context), // Add the locale here
+      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       defaultTransition: transition,
       title: 'covidresources',
