@@ -46,18 +46,18 @@ class HomePage extends StatelessWidget {
                   Gap(10),
                   SearchButton(),
                   Gap(20),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'External Links',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Gap(5),
-                      Icon(Icons.link)
-                    ],
-                  ),
-                  ExternalLinksWidget(),
+                  // Row(
+                  //   mainAxisSize: MainAxisSize.min,
+                  //   children: [
+                  //     Text(
+                  //       'External Links',
+                  //       style: TextStyle(fontWeight: FontWeight.bold),
+                  //     ),
+                  //     Gap(5),
+                  //     Icon(Icons.link)
+                  //   ],
+                  // ),
+                  // ExternalLinksWidget(),
                   Gap(10),
                   RichText(
                     textAlign: TextAlign.center,
