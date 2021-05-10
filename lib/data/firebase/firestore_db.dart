@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:lifecoronasafe/models/NotificationQueries.dart';
 import 'package:lifecoronasafe/models/resource.dart';
 
 class FireStoreDb {
@@ -28,6 +29,44 @@ class FireStoreDb {
       return 'Update Success';
     } catch (e) {
       return e.toString();
+    }
+  }
+
+  static Future<String> addNotification(
+      String district, String state, String resource, String uid) async {
+    try {
+      final data = await fireStoreInstance
+          .collection('Users')
+          .doc(uid)
+          .collection('queries')
+          .add({
+        'district': district,
+        'state': state,
+        'resource': resource,
+        'active': true,
+        'lastmodified': DateTime.now()
+      });
+      return data.id;
+    } catch (e) {
+      throw FirebaseException(message: e.toString(), plugin: '');
+    }
+  }
+
+  static Future<List<NotificationQueriesModel>> getAllNotification(
+      String uid) async {
+    try {
+      final snapshot = await FireStoreDb.fireStoreInstance
+          .collection('Users')
+          .doc(uid)
+          .collection('queries')
+          .get();
+      return snapshot.docs
+          .map((e) => NotificationQueriesModel.fromJson(
+              {'docid': e.id, 'uid': uid, ...e.data()}))
+          .toList();
+    } catch (e) {
+      debugPrint(e.toString());
+      throw FirebaseException(message: e.toString(), plugin: '');
     }
   }
 
