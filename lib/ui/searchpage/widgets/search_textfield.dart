@@ -9,10 +9,8 @@ import 'package:lifecoronasafe/ui/searchpage/search_page_viewmodel.dart';
 class SearchTextField extends StatelessWidget {
   SearchTextField({
     Key? key,
-    required this.placeCtrl,
   }) : super(key: key);
 
-  final TextEditingController placeCtrl;
   final APIRepository repo = APIRepositoryImpl();
   final state = Get.find<SearchPageViewModel>();
   final placesCtrl = Get.find<PlacesController>();
@@ -77,7 +75,5 @@ class SearchTextField extends StatelessWidget {
   }
 
   // ignore: avoid_void_async
-  void _searchResource() async {
-    
-  }
+  void _searchResource() async {}
 }
