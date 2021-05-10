@@ -3,7 +3,9 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 import 'package:lifecoronasafe/constants.dart';
+import 'package:lifecoronasafe/data/models/covid_resource_model.dart';
 import 'package:lifecoronasafe/data/repository/api_respository.dart';
+import 'package:lifecoronasafe/utils/formatToUrlString.dart';
 
 class APIRepositoryImpl implements APIRepository {
   @override
@@ -62,5 +64,26 @@ class APIRepositoryImpl implements APIRepository {
       debugPrint(e.toString());
     }
     return searchList;
+  }
+
+  @override
+  Future<CovidResources?> fetchResources(
+      String state, String district, String resource) async {
+    final String formattedDistrict = district.trim();
+    final String formattedResource = resource.trim();
+    final String formattedState = state.trim();
+    try {
+      final url =
+          '${Constants.lifePipelineAPI}resource=$formattedResource&state=$formattedState&district=$formattedDistrict';
+      final response = await Dio().get(url);
+      if (response.statusCode == 200) {
+        return CovidResources.fromJson(response.data as Map<String, dynamic>);
+      } else {
+        debugPrint('${response.statusCode}');
+      }
+    } catch (error) {
+      debugPrint(error.toString());
+    }
+    return null;
   }
 }
