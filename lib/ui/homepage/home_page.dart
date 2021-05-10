@@ -14,7 +14,6 @@ import 'package:lifecoronasafe/ui/homepage/widgets/verified_switch.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
-  final placeCtrl = TextEditingController();
   final state = Get.put(HomePageViewModel());
   @override
   Widget build(BuildContext context) {
@@ -39,13 +38,13 @@ class HomePage extends StatelessWidget {
                 children: [
                   HomePageCarousel(),
                   Gap(20),
-                  PlaceTextField(placeCtrl: placeCtrl),
+                  PlaceTextField(),
                   Gap(15),
                   ResourceSelector(),
                   Gap(15),
                   VerifiedSwitch(),
                   Gap(10),
-                  SearchButton(placeCtrl: placeCtrl),
+                  SearchButton(),
                   Gap(20),
                   Row(
                     mainAxisSize: MainAxisSize.min,

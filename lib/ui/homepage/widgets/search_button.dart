@@ -8,10 +8,7 @@ import 'package:lifecoronasafe/ui/searchpage/search_page.dart';
 class SearchButton extends StatelessWidget {
   const SearchButton({
     Key? key,
-    required this.placeCtrl,
   }) : super(key: key);
-
-  final TextEditingController placeCtrl;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +19,14 @@ class SearchButton extends StatelessWidget {
       color: Color(0xFF34C759),
       onPressed: () {
         final state = Get.find<HomePageViewModel>();
-        if (placeCtrl.text == '') {
+        if (state.placeCtrl.text == '') {
           Get.snackbar('Error', 'Please select a district!',
               snackPosition: SnackPosition.BOTTOM, margin: EdgeInsets.all(20));
         } else if (state.resource() == '') {
           Get.snackbar('Error', 'Please select a resource!',
               snackPosition: SnackPosition.BOTTOM, margin: EdgeInsets.all(20));
         } else {
-          final split = placeCtrl.text.split(',');
+          final split = state.placeCtrl.text.split(',');
           Get.to(SearchPage(
             district: split[0],
             state: split[1],

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:lifecoronasafe/data/repository/api_repository_impl.dart';
 import 'package:lifecoronasafe/data/repository/api_respository.dart';
 import 'package:lifecoronasafe/theme/app_theme.dart';
 import 'package:lifecoronasafe/ui/homepage/home_page_viewmodel.dart';
+import 'package:lifecoronasafe/ui/searchpage/search_page_viewmodel.dart';
 
-class PlaceTextField extends StatelessWidget {
-  PlaceTextField({
+class SearchTextField extends StatelessWidget {
+  SearchTextField({
     Key? key,
+    required this.placeCtrl,
   }) : super(key: key);
 
+  final TextEditingController placeCtrl;
   final APIRepository repo = APIRepositoryImpl();
-  final state = Get.find<HomePageViewModel>();
+  final state = Get.find<SearchPageViewModel>();
   final placesCtrl = Get.find<PlacesController>();
   @override
   Widget build(BuildContext context) {
@@ -21,8 +23,16 @@ class PlaceTextField extends StatelessWidget {
           (context, textEditingController, focusNode, onFieldSubmitted) {
         return TextFormField(
           controller: textEditingController,
-          decoration: AppTheme.inputDecoration(
-              'Enter State or District To Search Resources For'),
+          decoration:
+              AppTheme.inputDecoration('Enter a place to search resources...')
+                  .copyWith(
+                      fillColor: Colors.white,
+                      suffixIcon: IconButton(
+                          icon: Icon(
+                            Icons.search,
+                            color: Color(0xFF34C759),
+                          ),
+                          onPressed: _searchResource)),
           focusNode: focusNode,
         );
       },
@@ -34,7 +44,7 @@ class PlaceTextField extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(7)),
               child: SizedBox(
-                  width: MediaQuery.of(context).size.width - 40,
+                  width: MediaQuery.of(context).size.width - 20,
                   child: ListView.builder(
                     shrinkWrap: true,
                     padding: const EdgeInsets.all(8.0),
@@ -61,8 +71,13 @@ class PlaceTextField extends StatelessWidget {
         });
       },
       onSelected: (String selection) {
-        state.placeCtrl.text = selection;
+        state.place.value = selection;
       },
     );
+  }
+
+  // ignore: avoid_void_async
+  void _searchResource() async {
+    
   }
 }
