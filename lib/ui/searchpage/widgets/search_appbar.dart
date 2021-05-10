@@ -19,13 +19,13 @@ class SearchAppBar extends StatelessWidget {
         'Search Results',
         style: TextStyle(color: Colors.black),
       ),
-      expandedHeight: 130,
+      expandedHeight: 110,
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(170),
+        preferredSize: Size.fromHeight(155),
         child: FlexibleSpaceBar(
             centerTitle: true,
             title: Container(
-                padding: EdgeInsets.only(right: 10, left: 10),
+                padding: EdgeInsets.only(right: 15, left: 15),
                 child: Column(
                   children: [
                     SearchTextField(),

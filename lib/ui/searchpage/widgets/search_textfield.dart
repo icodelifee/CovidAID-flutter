@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lifecoronasafe/data/repository/api_repository_impl.dart';
-import 'package:lifecoronasafe/data/repository/api_respository.dart';
 import 'package:lifecoronasafe/theme/app_theme.dart';
 import 'package:lifecoronasafe/ui/homepage/home_page_viewmodel.dart';
 import 'package:lifecoronasafe/ui/searchpage/search_page_viewmodel.dart';
@@ -11,7 +9,6 @@ class SearchTextField extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final APIRepository repo = APIRepositoryImpl();
   final state = Get.find<SearchPageViewModel>();
   final placesCtrl = Get.find<PlacesController>();
   @override
@@ -20,7 +17,7 @@ class SearchTextField extends StatelessWidget {
       fieldViewBuilder:
           (context, textEditingController, focusNode, onFieldSubmitted) {
         return TextFormField(
-          controller: textEditingController,
+          controller: textEditingController..text = state.place.toString(),
           decoration:
               AppTheme.inputDecoration('Enter a place to search resources...')
                   .copyWith(
@@ -30,7 +27,7 @@ class SearchTextField extends StatelessWidget {
                             Icons.search,
                             color: Color(0xFF34C759),
                           ),
-                          onPressed: _searchResource)),
+                          onPressed: state.searchResource)),
           focusNode: focusNode,
         );
       },
@@ -70,10 +67,8 @@ class SearchTextField extends StatelessWidget {
       },
       onSelected: (String selection) {
         state.place.value = selection;
+        state.searchResource();
       },
     );
   }
-
-  // ignore: avoid_void_async
-  void _searchResource() async {}
 }

@@ -27,12 +27,12 @@ class SearchButton extends StatelessWidget {
               snackPosition: SnackPosition.BOTTOM, margin: EdgeInsets.all(20));
         } else {
           final split = state.placeCtrl.text.split(',');
-          Get.to(SearchPage(
-            district: split[0],
-            state: split[1],
-            isVerified: state.verified(),
-            resource: state.resource(),
-          ));
+          Get.to(() => SearchPage(
+                district: split[0],
+                state: split[1],
+                isVerified: state.verified(),
+                resource: state.resource(),
+              ));
         }
       },
       child: Row(

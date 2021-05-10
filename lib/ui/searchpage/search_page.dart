@@ -1,17 +1,11 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lifecoronasafe/data/models/covid_resource_model.dart';
-import 'package:lifecoronasafe/theme/app_theme.dart';
-import 'package:lifecoronasafe/ui/homepage/home_page_viewmodel.dart';
 import 'package:lifecoronasafe/ui/searchpage/search_page_viewmodel.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/search_appbar.dart';
-import 'package:lifecoronasafe/ui/searchpage/widgets/search_resource_selector.dart';
-import 'package:lifecoronasafe/ui/searchpage/widgets/search_textfield.dart';
-import 'package:dio/dio.dart';
-import 'package:lifecoronasafe/ui/searchpage/widgets/search_verified.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({
@@ -31,52 +25,99 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (resource != null) {
       ctrl.resource.value = resource!;
-      ctrl.place.value = '$state, $district';
+      ctrl.place.value = '$district, $state';
       ctrl.verified.value = isVerified!;
+      ctrl.searchResource();
     }
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
           SearchAppBar(),
-          SliverList(
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              return ListTile(
-                title: Text('Row $index'),
-              );
-            }),
-          )
+          SliverFillRemaining(
+            child: Obx(
+              () => FutureBuilder<CovidResources?>(
+                future: ctrl.resourcesFuture.value,
+                builder: (BuildContext context,
+                    AsyncSnapshot<CovidResources?> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.data!.resources.isNotEmpty) {
+                      final resources = snapshot.data!.resources;
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: resources.length,
+                        padding: EdgeInsets.only(top: 35, bottom: 10),
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 2),
+                            child: Card(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    resources[index].title,
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    resources[index].address,
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500),
+                                  )
+                                ],
+                              ).paddingSymmetric(horizontal: 20, vertical: 20),
+                            ),
+                          );
+                        },
+                      );
+                    } else {
+                      return ResourceNotFound();
+                    }
+                  } else if (snapshot.connectionState ==
+                      ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else {
+                    return ResourceError();
+                  }
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 }
 
-CovidResources parseCovidResources(String responseBody) {
-  final parsed = jsonDecode(responseBody).cast<String, dynamic>();
-  return CovidResources.fromJson(parsed as Map<String, dynamic>);
-}
+class ResourceError extends StatelessWidget {
+  const ResourceError({
+    Key? key,
+  }) : super(key: key);
 
-Future<CovidResources?> fetchResources(
-    String _state, String _district, String _resource) async {
-  final String _formattedDistrict = formatToUrlString(_district);
-  final String _formattedResource = formatToUrlString(_resource);
-  final String _formattedState = formatToUrlString(_state);
-  try {
-    final response = await Dio().get(
-        'https://life-pipeline.coronasafe.network/api/resources?resource=$_formattedResource&state=$_formattedState&district=$_formattedDistrict');
-
-    if (response.statusCode == 200) {
-      return parseCovidResources(response.toString());
-    } else {
-      print('${response.statusCode}');
-    }
-  } catch (error) {
-    print(error);
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Some error occured! Please try again later.',
+          style: TextStyle(
+              fontSize: 20, color: Colors.red, fontWeight: FontWeight.bold)),
+    );
   }
-  return null;
 }
 
-String formatToUrlString(String strToConvert) {
-  return strToConvert.toLowerCase().replaceAll(' ', '_');
+class ResourceNotFound extends StatelessWidget {
+  const ResourceNotFound({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        'Resources not found!',
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
 }
