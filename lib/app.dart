@@ -10,12 +10,14 @@ import 'package:lifecoronasafe/ui/homepage/home_page.dart';
 
 class App extends StatelessWidget {
   final List<GetPage> _pages = [
-    GetPage(name: '/', page: () => HomePage(), binding: ResourcesBinding()),
+    GetPage(name: '/', page: () => HomePage(), binding: HomepageBinding()),
     GetPage(name: '/notification_settings', page: () => NotificationSettings()),
     GetPage(name: '/splash', page: () => const splash.SplashScreen()),
   ];
-  final ThemeData themeData =
-      ThemeData(textTheme: GoogleFonts.poppinsTextTheme());
+  final ThemeData themeData = ThemeData(
+      textTheme: GoogleFonts.poppinsTextTheme(),
+      accentIconTheme: IconThemeData(color: Color(0xFF34C759)),
+      accentColor: const Color(0xFF34C759));
   final Transition transition = Transition.cupertino;
 
   @override
