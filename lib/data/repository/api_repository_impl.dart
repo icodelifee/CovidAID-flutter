@@ -37,4 +37,30 @@ class APIRepositoryImpl implements APIRepository {
     }
     return searchList;
   }
+
+  Future<List<String>> getAllStates() async {
+    final searchList = <String>[];
+
+    final options = CacheOptions(
+      hitCacheOnErrorExcept: [401, 403],
+      maxStale: Duration(hours: 1),
+      store: MemCacheStore(),
+    );
+    try {
+      final response = await Dio().get(
+        '${Constants.lifeAPI}states.json',
+        options: options.copyWith(policy: CachePolicy.request).toOptions(),
+      );
+      if (response.statusCode == 200) {
+        final dataMap = response.data as Map<String, dynamic>;
+        dataMap.forEach((state, value) {
+          searchList.addAll(
+              (value as List).map((district) => '$district, $state').toList());
+        });
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return searchList;
+  }
 }
