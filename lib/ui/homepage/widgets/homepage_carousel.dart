@@ -73,10 +73,7 @@ class HomePageCarousel extends StatelessWidget {
                             fontWeight: FontWeight.w900),
                       ),
                     ),
-                    Image.asset(
-                      i['image'].toString(),
-                      width: 120,
-                    )
+                    Image.asset(i['image'].toString(), width: Get.width / 3.5)
                   ],
                 ));
           },
