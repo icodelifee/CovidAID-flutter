@@ -21,7 +21,15 @@ class PlaceTextField extends StatelessWidget {
         return TextFormField(
           controller: textEditingController,
           decoration: AppTheme.inputDecoration(
-              'Enter State or District To Search Resources For'),
+                  'Enter State or District To Search Resources For')
+              .copyWith(
+                  suffixIcon: IconButton(
+            padding: EdgeInsets.only(right: 10),
+            icon: Icon(Icons.close, color: Get.theme.accentColor),
+            onPressed: () {
+              textEditingController.clear();
+            },
+          )),
           focusNode: focusNode,
         );
       },
