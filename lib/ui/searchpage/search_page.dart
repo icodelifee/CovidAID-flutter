@@ -1,3 +1,8 @@
+import 'dart:math';
+
+import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile.dart';
+import 'package:expand_widget/expand_widget.dart';
+import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -5,7 +10,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifecoronasafe/data/models/covid_resource_model.dart';
 import 'package:lifecoronasafe/ui/searchpage/search_page_viewmodel.dart';
+import 'package:lifecoronasafe/ui/searchpage/widgets/resource_error.dart';
+import 'package:lifecoronasafe/ui/searchpage/widgets/resource_not_found.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/search_appbar.dart';
+import 'package:lottie/lottie.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({
@@ -20,6 +28,12 @@ class SearchPage extends StatelessWidget {
   final String? district;
   final String? resource;
   final bool? isVerified;
+  final lottieAssets = [
+    'assets/lottie/hand-wash.json',
+    'assets/lottie/sanitizer.json',
+    'assets/lottie/spray.json',
+    'assets/lottie/wipe.json'
+  ];
   final ctrl = Get.put(SearchPageViewModel());
   @override
   Widget build(BuildContext context) {
@@ -45,30 +59,169 @@ class SearchPage extends StatelessWidget {
                       return ListView.builder(
                         shrinkWrap: true,
                         itemCount: resources.length,
-                        padding: EdgeInsets.only(top: 35, bottom: 10),
+                        padding: EdgeInsets.only(
+                            top: 25, bottom: 10, left: 5, right: 5),
                         itemBuilder: (BuildContext context, int index) {
                           return Container(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 2),
                             child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(7)),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    resources[index].title,
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          resources[index].title,
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ),
+                                      if (resources[index]
+                                          .verificationStatus
+                                          .toLowerCase()
+                                          .contains('verified'))
+                                        Image.asset(
+                                          'assets/images/check.png',
+                                          width: 20,
+                                        )
+                                      else
+                                        SizedBox()
+                                    ],
                                   ),
-                                  Text(
-                                    resources[index].address,
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500),
+                                  Gap(10),
+                                  ...resources[index].description.isNotEmpty
+                                      ? [
+                                          ExpandText(
+                                            resources[index].description,
+                                            maxLines: 1,
+                                          ),
+                                        ]
+                                      : [],
+                                  Divider(),
+                                  Gap(5),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Wrap(
+                                        spacing: 10,
+                                        children: [
+                                          IconButton(
+                                              constraints:
+                                                  BoxConstraints(minWidth: 10),
+                                              padding: EdgeInsets.zero,
+                                              icon: Icon(Icons.phone_outlined),
+                                              onPressed: () {}),
+                                          Text(
+                                            resources[index].phone1,
+                                            style: GoogleFonts.poppins(
+                                                fontWeight: FontWeight.w500),
+                                          )
+                                        ],
+                                      ),
+                                      Wrap(
+                                        spacing: 10,
+                                        children: [
+                                          IconButton(
+                                              constraints:
+                                                  BoxConstraints(minWidth: 10),
+                                              padding: EdgeInsets.zero,
+                                              icon: Icon(Icons.share_outlined),
+                                              onPressed: () {}),
+                                          Gap(10),
+                                          IconButton(
+                                              constraints:
+                                                  BoxConstraints(minWidth: 10),
+                                              padding: EdgeInsets.zero,
+                                              icon: Icon(Icons.link_rounded),
+                                              onPressed: () {}),
+                                        ],
+                                      )
+                                    ],
                                   )
                                 ],
                               ).paddingSymmetric(horizontal: 20, vertical: 20),
                             ),
+                            // child: ExpansionTileCard(
+                            //   // trailing: Chip(
+                            //   //   padding: EdgeInsets.all(0),
+                            //   //   labelPadding:
+                            //   //       EdgeInsets.only(left: 8, right: 8),
+                            //   //   label: Text(
+                            //   //     'VERIFIED',
+                            //   //     style: TextStyle(
+                            //   //         letterSpacing: 1,
+                            //   //         color: Colors.white,
+                            //   //         fontWeight: FontWeight.bold,
+                            //   //         fontSize: 10),
+                            //   //   ),
+                            //   //   backgroundColor: Colors.green[400],
+                            //   // ),
+                            //   contentPadding: EdgeInsets.only(right: 10),
+                            //   initialElevation: 1.0,
+                            //   elevation: 1,
+                            //   title: Column(
+                            //     crossAxisAlignment: CrossAxisAlignment.start,
+                            //     children: [
+                            //       Text(
+                            //         resources[index].title,
+                            //         style: GoogleFonts.poppins(
+                            //             fontSize: 15,
+                            //             fontWeight: FontWeight.w600),
+                            //       ),
+                            //       Gap(20),
+                            //       Row(
+                            //         mainAxisAlignment:
+                            //             MainAxisAlignment.spaceBetween,
+                            //         children: [
+                            //           Wrap(
+                            //             spacing: 10,
+                            //             children: [
+                            //               IconButton(
+                            //                   constraints: BoxConstraints(
+                            //                       minWidth: 10),
+                            //                   padding: EdgeInsets.zero,
+                            //                   icon:
+                            //                       Icon(Icons.phone_outlined),
+                            //                   onPressed: () {}),
+                            //               Text(
+                            //                 resources[index].phone1,
+                            //                 style: GoogleFonts.poppins(
+                            //                     fontWeight: FontWeight.w500),
+                            //               )
+                            //             ],
+                            //           ),
+                            //           Wrap(
+                            //             spacing: 10,
+                            //             children: [
+                            //               IconButton(
+                            //                   constraints: BoxConstraints(
+                            //                       minWidth: 10),
+                            //                   padding: EdgeInsets.zero,
+                            //                   icon:
+                            //                       Icon(Icons.share_outlined),
+                            //                   onPressed: () {}),
+                            //               IconButton(
+                            //                   constraints: BoxConstraints(
+                            //                       minWidth: 10),
+                            //                   padding: EdgeInsets.zero,
+                            //                   icon: Icon(Icons.link_rounded),
+                            //                   onPressed: () {}),
+                            //             ],
+                            //           )
+                            //         ],
+                            //       )
+                            //     ],
+                            //   ).paddingSymmetric(
+                            //       horizontal: 20, vertical: 20),
+                            // )
                           );
                         },
                       );
@@ -77,7 +230,10 @@ class SearchPage extends StatelessWidget {
                     }
                   } else if (snapshot.connectionState ==
                       ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
+                    return Center(
+                      child: Lottie.asset(
+                          lottieAssets[Random().nextInt(lottieAssets.length)]),
+                    );
                   } else {
                     return ResourceError();
                   }
@@ -86,37 +242,6 @@ class SearchPage extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class ResourceError extends StatelessWidget {
-  const ResourceError({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('Some error occured! Please try again later.',
-          style: TextStyle(
-              fontSize: 20, color: Colors.red, fontWeight: FontWeight.bold)),
-    );
-  }
-}
-
-class ResourceNotFound extends StatelessWidget {
-  const ResourceNotFound({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Resources not found!',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );
   }
