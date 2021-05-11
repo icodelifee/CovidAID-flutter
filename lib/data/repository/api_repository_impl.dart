@@ -5,7 +5,6 @@ import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 import 'package:lifecoronasafe/constants.dart';
 import 'package:lifecoronasafe/data/models/covid_resource_model.dart';
 import 'package:lifecoronasafe/data/repository/api_respository.dart';
-import 'package:lifecoronasafe/utils/formatToUrlString.dart';
 
 class APIRepositoryImpl implements APIRepository {
   @override
@@ -40,6 +39,7 @@ class APIRepositoryImpl implements APIRepository {
     return searchList;
   }
 
+  @override
   Future<List<String>> getAllStates() async {
     final searchList = <String>[];
 

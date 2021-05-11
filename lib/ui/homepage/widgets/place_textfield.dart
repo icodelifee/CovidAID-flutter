@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:lifecoronasafe/data/repository/api_repository_impl.dart';
 import 'package:lifecoronasafe/data/repository/api_respository.dart';
