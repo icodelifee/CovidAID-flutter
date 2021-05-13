@@ -184,7 +184,28 @@ class SearchPage extends StatelessWidget {
                                                   BoxConstraints(minWidth: 10),
                                               padding: EdgeInsets.zero,
                                               icon: Icon(Icons.link_rounded),
-                                              onPressed: () {}),
+                                              onPressed: () async {
+                                                if (resources[index]
+                                                    .sourceLink
+                                                    .isNotEmpty) {
+                                                  if (!resources[index]
+                                                      .sourceLink
+                                                      .contains('http')) {
+                                                    launch(
+                                                        'http://${resources[index].sourceLink}');
+                                                  } else {
+                                                    launch(resources[index]
+                                                        .sourceLink);
+                                                  }
+                                                } else {
+                                                  Get.rawSnackbar(
+                                                      duration: Duration(
+                                                          milliseconds: 900),
+                                                      title: 'Error',
+                                                      message:
+                                                          'Source link does not exist for this resource');
+                                                }
+                                              }),
                                         ],
                                       )
                                     ],
