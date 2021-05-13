@@ -43,7 +43,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      PlaceTextField(placeCtrl: placeCtrl),
+                      PlaceTextField(),
                       Gap(15),
                       ResourceSelector(),
                       Gap(15),

@@ -22,3 +22,15 @@ class SearchPageViewModel extends GetxController {
         repo.fetchResources(placeSplit[1], placeSplit[0], resource.value);
   }
 }
+
+class MappedPlacesController extends GetxController {
+  RxMap<String, dynamic> mappedPlaces = RxMap<String, dynamic>();
+  final APIRepository repo = APIRepositoryImpl();
+
+  @override
+  //ignore: avoid_void_async
+  void onInit() async {
+    super.onInit();
+    mappedPlaces.value = await repo.getMappedPlaces();
+  }
+}

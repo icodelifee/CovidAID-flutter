@@ -5,7 +5,6 @@ import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 import 'package:lifecoronasafe/constants.dart';
 import 'package:lifecoronasafe/data/models/covid_resource_model.dart';
 import 'package:lifecoronasafe/data/repository/api_respository.dart';
-import 'package:lifecoronasafe/utils/formatToUrlString.dart';
 
 class APIRepositoryImpl implements APIRepository {
   @override
@@ -40,6 +39,7 @@ class APIRepositoryImpl implements APIRepository {
     return searchList;
   }
 
+  @override
   Future<List<String>> getAllStates() async {
     final searchList = <String>[];
 
@@ -64,6 +64,27 @@ class APIRepositoryImpl implements APIRepository {
       debugPrint(e.toString());
     }
     return searchList;
+  }
+
+  @override
+  Future<Map<String, dynamic>> getMappedPlaces() async {
+    final options = CacheOptions(
+      hitCacheOnErrorExcept: [401, 403],
+      maxStale: Duration(hours: 1),
+      store: MemCacheStore(),
+    );
+    try {
+      final response = await Dio().get(
+        '${Constants.lifeAPI}states.json',
+        options: options.copyWith(policy: CachePolicy.request).toOptions(),
+      );
+      if (response.statusCode == 200) {
+        return response.data as Map<String, dynamic>;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return {};
   }
 
   @override
