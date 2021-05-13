@@ -67,6 +67,27 @@ class APIRepositoryImpl implements APIRepository {
   }
 
   @override
+  Future<Map<String, dynamic>> getMappedPlaces() async {
+    final options = CacheOptions(
+      hitCacheOnErrorExcept: [401, 403],
+      maxStale: Duration(hours: 1),
+      store: MemCacheStore(),
+    );
+    try {
+      final response = await Dio().get(
+        '${Constants.lifeAPI}states.json',
+        options: options.copyWith(policy: CachePolicy.request).toOptions(),
+      );
+      if (response.statusCode == 200) {
+        return response.data as Map<String, dynamic>;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return {};
+  }
+
+  @override
   Future<CovidResources?> fetchResources(
       String state, String district, String resource) async {
     final String formattedDistrict = district.trim();

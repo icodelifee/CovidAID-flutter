@@ -29,7 +29,7 @@ class SearchAppBar extends StatelessWidget {
                 child: Column(
                   children: [
                     SearchTextField(),
-                    Gap(9),
+                    Gap(12),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [SearchResourceSelector(), SearchVerified()],

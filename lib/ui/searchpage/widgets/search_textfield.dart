@@ -1,74 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lifecoronasafe/theme/app_theme.dart';
 import 'package:lifecoronasafe/ui/homepage/home_page_viewmodel.dart';
 import 'package:lifecoronasafe/ui/searchpage/search_page_viewmodel.dart';
 
-class SearchTextField extends StatelessWidget {
-  SearchTextField({
+class SearchTextField extends StatefulWidget {
+  const SearchTextField({
     Key? key,
   }) : super(key: key);
 
+  @override
+  _SearchTextFieldState createState() => _SearchTextFieldState();
+}
+
+class _SearchTextFieldState extends State<SearchTextField> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   final state = Get.find<SearchPageViewModel>();
   final placesCtrl = Get.find<PlacesController>();
+  final mappedPlacesCtrl = Get.find<MappedPlacesController>();
+  String _selectedState = 'Maharashtra';
+  String _selectedCity = 'Nagpur';
+
   @override
   Widget build(BuildContext context) {
-    return Autocomplete<String>(
-      fieldViewBuilder:
-          (context, textEditingController, focusNode, onFieldSubmitted) {
-        return TextFormField(
-          controller: textEditingController..text = state.place.toString(),
-          decoration:
-              AppTheme.inputDecoration('Enter a place to search resources...')
-                  .copyWith(
-                      fillColor: Colors.white,
-                      suffixIcon: IconButton(
-                          icon: Icon(
-                            Icons.search,
-                            color: Color(0xFF34C759),
-                          ),
-                          onPressed: state.searchResource)),
-          focusNode: focusNode,
-        );
-      },
-      optionsViewBuilder: (context, onAutoCompleteSelect, options) {
-        return Align(
-            alignment: Alignment.topLeft,
-            child: Material(
-              elevation: 4.0,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(7)),
-              child: SizedBox(
-                  width: MediaQuery.of(context).size.width - 20,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.all(8.0),
-                    itemCount: options.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                        contentPadding: EdgeInsets.only(left: 10, right: 10),
-                        onTap: () =>
-                            onAutoCompleteSelect(options.elementAt(index)),
-                        title: Text(options.elementAt(index).toString()),
-                      );
-                    },
-                  )),
-            ));
-      },
-      optionsBuilder: (TextEditingValue textEditingValue) {
-        if (textEditingValue.text == '') {
-          return const Iterable<String>.empty();
-        }
-        return placesCtrl.places.where((String option) {
-          return option
-              .toLowerCase()
-              .contains(textEditingValue.text.toLowerCase());
-        });
-      },
-      onSelected: (String selection) {
-        state.place.value = selection;
-        state.searchResource();
-      },
-    );
+    return Row(children: [
+      Expanded(
+        child: DropdownButtonFormField<String>(
+          decoration: AppTheme.inputDecoration('Select State')
+              .copyWith(fillColor: Colors.white),
+          isExpanded: true,
+          value: _selectedState,
+          onChanged: (String? newState) async {
+            setState(() {
+              _selectedState = newState!;
+              _selectedCity =
+                  (mappedPlacesCtrl.mappedPlaces[_selectedState] as List)
+                      .first
+                      .toString();
+            });
+          },
+          items: mappedPlacesCtrl.mappedPlaces.keys.map((stateName) {
+            return DropdownMenuItem<String>(
+              value: stateName.toString(),
+              child: Text(stateName.toString()),
+            );
+          }).toList(),
+        ),
+      ),
+      Gap(10),
+      Expanded(
+        child: DropdownButtonFormField<String>(
+          decoration: AppTheme.inputDecoration('Select City')
+              .copyWith(fillColor: Colors.white),
+          isExpanded: true,
+          value: _selectedCity,
+          onChanged: (String? newCity) async {
+            setState(() {
+              _selectedCity = newCity!;
+            });
+          },
+          items: (mappedPlacesCtrl.mappedPlaces[_selectedState] as List)
+              .map((cityName) {
+            return DropdownMenuItem<String>(
+              value: cityName.toString(),
+              child: Text(cityName.toString()),
+            );
+          }).toList(),
+        ),
+      )
+    ]);
   }
 }

@@ -5,4 +5,5 @@ abstract class APIRepository {
   Future<List<String>> getSearchResults(String query);
   Future<CovidResources?> fetchResources(
       String state, String district, String resource);
+  Future<Map<String, dynamic>> getMappedPlaces();
 }
