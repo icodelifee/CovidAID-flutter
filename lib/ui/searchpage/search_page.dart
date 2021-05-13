@@ -12,6 +12,7 @@ import 'package:lifecoronasafe/ui/searchpage/widgets/resource_error.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/resource_not_found.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/search_appbar.dart';
 import 'package:lottie/lottie.dart';
+import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SearchPage extends StatelessWidget {
@@ -158,7 +159,25 @@ class SearchPage extends StatelessWidget {
                                                   BoxConstraints(minWidth: 10),
                                               padding: EdgeInsets.zero,
                                               icon: Icon(Icons.share_outlined),
-                                              onPressed: () {}),
+                                              onPressed: () {
+                                                final res = resources[index];
+                                                String shareString = res.title;
+
+                                                if (res
+                                                    .description.isNotEmpty) {
+                                                  shareString +=
+                                                      '\n\n${resources[index].description}';
+                                                }
+                                                if (res.phone1.isNotEmpty) {
+                                                  shareString +=
+                                                      '\n\n${resources[index].phone1}';
+                                                }
+                                                if (res.sourceLink.isNotEmpty) {
+                                                  shareString +=
+                                                      '\n\n${resources[index].sourceLink}';
+                                                }
+                                                Share.share(shareString);
+                                              }),
                                           Gap(10),
                                           IconButton(
                                               constraints:
