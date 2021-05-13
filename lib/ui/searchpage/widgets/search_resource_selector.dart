@@ -19,6 +19,7 @@ class SearchResourceSelector extends GetView<ResourcesController> {
         child: DropdownButtonFormField(
           onChanged: (String? val) {
             ctrl.resource.value = val!;
+            ctrl.searchResource();
           },
           value: ctrl.resource(),
           hint: Text('Select Resource'),
