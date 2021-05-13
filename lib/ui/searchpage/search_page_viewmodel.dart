@@ -6,20 +6,20 @@ import 'package:lifecoronasafe/data/repository/api_respository.dart';
 class SearchPageViewModel extends GetxController {
   RxString resource = RxString('');
   RxBool verified = RxBool(false);
-  RxString place = RxString('');
+  RxString state = RxString('');
+  RxString district = RxString('');
   final APIRepository repo = APIRepositoryImpl();
   Rx<Future<CovidResources?>> resourcesFuture =
       Future.value(CovidResources(resources: [])).obs;
 
   // ignore: avoid_void_async
   void searchResource() async {
-    if (place.value.isEmpty) {
+    if (district.value.isEmpty || state.value.isEmpty) {
       Get.rawSnackbar(title: 'Search Error', message: 'Please enter a state');
       return;
     }
-    final placeSplit = place.value.split(',');
-    resourcesFuture.value =
-        repo.fetchResources(placeSplit[1], placeSplit[0], resource.value);
+    resourcesFuture.value = repo.fetchResources(
+        state.value.trim(), district.value.trim(), resource.value);
   }
 }
 
