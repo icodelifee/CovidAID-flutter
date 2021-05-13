@@ -5,7 +5,9 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifecoronasafe/ui/homepage/home_page_viewmodel.dart';
+import 'package:lifecoronasafe/ui/homepage/widgets/external_links.dart';
 import 'package:lifecoronasafe/ui/homepage/widgets/homepage_carousel.dart';
+import 'package:lifecoronasafe/ui/homepage/widgets/homepage_drawer.dart';
 import 'package:lifecoronasafe/ui/homepage/widgets/place_textfield.dart';
 import 'package:lifecoronasafe/ui/homepage/widgets/resource_selector.dart';
 import 'package:lifecoronasafe/ui/homepage/widgets/search_button.dart';
@@ -27,7 +29,7 @@ class HomePage extends StatelessWidget {
                 onPressed: () => Get.toNamed('/notification_settings'))
           ],
         ),
-        drawer: const Drawer(),
+        drawer: HomePageDrawer(),
         body: LayoutBuilder(builder: (context, constraints) {
           return SingleChildScrollView(
             child: Padding(
@@ -45,18 +47,6 @@ class HomePage extends StatelessWidget {
                   Gap(10),
                   SearchButton(),
                   Gap(20),
-                  // Row(
-                  //   mainAxisSize: MainAxisSize.min,
-                  //   children: [
-                  //     Text(
-                  //       'External Links',
-                  //       style: TextStyle(fontWeight: FontWeight.bold),
-                  //     ),
-                  //     Gap(5),
-                  //     Icon(Icons.link)
-                  //   ],
-                  // ),
-                  // ExternalLinksWidget(),
                   Gap(10),
                   RichText(
                     textAlign: TextAlign.center,
