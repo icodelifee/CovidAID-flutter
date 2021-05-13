@@ -11,6 +11,7 @@ import 'package:lifecoronasafe/ui/searchpage/widgets/resource_error.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/resource_not_found.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/search_appbar.dart';
 import 'package:lottie/lottie.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({
@@ -41,6 +42,7 @@ class SearchPage extends StatelessWidget {
       ctrl.searchResource();
     }
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       body: CustomScrollView(
         slivers: <Widget>[
           SearchAppBar(),
@@ -115,7 +117,10 @@ class SearchPage extends StatelessWidget {
                                                   BoxConstraints(minWidth: 10),
                                               padding: EdgeInsets.zero,
                                               icon: Icon(Icons.phone_outlined),
-                                              onPressed: () {}),
+                                              onPressed: () {
+                                                launch(
+                                                    'tel:${resources[index].phone1}');
+                                              }),
                                           Text(
                                             resources[index].phone1,
                                             style: GoogleFonts.poppins(
