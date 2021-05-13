@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lifecoronasafe/data/firebase/firestore_db.dart';
 import 'package:lifecoronasafe/models/NotificationQueries.dart';
 
@@ -48,9 +49,9 @@ class _NotificationTileState extends State<NotificationTile> {
                   width: Get.width / 2,
                   child: Text(
                     data.resource.toUpperCase(),
-                    style: const TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 22,
-                      fontWeight: FontWeight.w900,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
                 ),
@@ -62,7 +63,7 @@ class _NotificationTileState extends State<NotificationTile> {
                       maxLines: 3,
                       softWrap: true,
                       style: const TextStyle(
-                        fontSize: 11,
+                        fontSize: 12,
                       ),
                     )),
               ],
