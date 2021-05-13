@@ -11,7 +11,9 @@ class ResourceSelector extends GetView<ResourcesController> {
   @override
   Widget build(BuildContext context) {
     return controller.obx((state) {
-      hstate.resource.value = state!.first.url!;
+      if (hstate.resource().isEmpty) {
+        hstate.resource.value = state!.first.url!;
+      }
       return DropdownButtonFormField(
         isExpanded: true,
         onChanged: (String? val) {
@@ -20,7 +22,7 @@ class ResourceSelector extends GetView<ResourcesController> {
         value: hstate.resource.value,
         hint: Text('Select Resource'),
         decoration: AppTheme.inputDecoration(''),
-        items: state
+        items: state!
             .map((e) => DropdownMenuItem<String>(
                   value: e.url,
                   child: Text(e.name!.capitalizeFirst!),

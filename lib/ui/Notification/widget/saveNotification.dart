@@ -25,7 +25,7 @@ class SaveNotification extends StatelessWidget {
         final state = Get.find<HomePageViewModel>();
         late final NotificationSettingsController notificationController =
             Get.put(NotificationSettingsController(uid: uid));
-        if (placeCtrl.text == '') {
+        if (state.placeCtrl.text == '') {
           Get.snackbar('Error', 'Please select a district!',
               snackPosition: SnackPosition.BOTTOM, margin: EdgeInsets.all(20));
         } else if (state.resource() == '') {
