@@ -5,7 +5,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifecoronasafe/ui/homepage/home_page_viewmodel.dart';
-import 'package:lifecoronasafe/ui/homepage/widgets/external_links.dart';
 import 'package:lifecoronasafe/ui/homepage/widgets/homepage_carousel.dart';
 import 'package:lifecoronasafe/ui/homepage/widgets/place_textfield.dart';
 import 'package:lifecoronasafe/ui/homepage/widgets/resource_selector.dart';

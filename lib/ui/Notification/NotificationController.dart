@@ -16,6 +16,7 @@ class NotificationSettingsController extends GetxController {
     super.onInit();
   }
 
+  // ignore: avoid_void_async
   void fetchNotifications() async {
     try {
       isLoading(true);

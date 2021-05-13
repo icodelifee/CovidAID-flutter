@@ -32,7 +32,7 @@ class SaveNotification extends StatelessWidget {
           Get.snackbar('Error', 'Please select a resource!',
               snackPosition: SnackPosition.BOTTOM, margin: EdgeInsets.all(20));
         } else {
-          final split = placeCtrl.text.split(',');
+          final split = state.placeCtrl.text.split(',');
           final resource = state.resource();
           debugPrint(split[0]);
 
