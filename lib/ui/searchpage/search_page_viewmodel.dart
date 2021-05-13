@@ -3,10 +3,11 @@ import 'package:lifecoronasafe/data/models/covid_resource_model.dart';
 import 'package:lifecoronasafe/data/repository/api_repository_impl.dart';
 import 'package:lifecoronasafe/data/repository/api_respository.dart';
 
-class SearchPageViewModel extends GetxController {
+class SearchPageViewModel extends GetxController
+    with StateMixin<CovidResources?> {
   RxString resource = RxString('');
   RxBool verified = RxBool(false);
-  RxString state = RxString('');
+  RxString pstate = RxString('');
   RxString district = RxString('');
   final APIRepository repo = APIRepositoryImpl();
   Rx<Future<CovidResources?>> resourcesFuture =
@@ -14,12 +15,16 @@ class SearchPageViewModel extends GetxController {
 
   // ignore: avoid_void_async
   void searchResource() async {
-    if (district.value.isEmpty || state.value.isEmpty) {
+    if (district.value.isEmpty || pstate.value.isEmpty) {
       Get.rawSnackbar(title: 'Search Error', message: 'Please enter a state');
       return;
     }
-    resourcesFuture.value = repo.fetchResources(
-        state.value.trim(), district.value.trim(), resource.value);
+    change(null, status: RxStatus.loading());
+    repo
+        .fetchResources(
+            pstate.value.trim(), district.value.trim(), resource.value)
+        .then((value) => change(value, status: RxStatus.success()))
+        .catchError((onError) => change(null, status: RxStatus.error()));
   }
 }
 

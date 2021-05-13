@@ -19,11 +19,11 @@ class SearchTextField extends StatelessWidget {
             decoration: AppTheme.inputDecoration('Select State')
                 .copyWith(fillColor: Colors.white),
             isExpanded: true,
-            value: state.state(),
+            value: state.pstate(),
             onChanged: (String? newState) async {
-              state.state.value = newState!;
+              state.pstate.value = newState!;
               state.district.value =
-                  (mappedPlacesCtrl.mappedPlaces[state.state.value] as List)
+                  (mappedPlacesCtrl.mappedPlaces[state.pstate.value] as List)
                       .first
                       .toString();
               state.searchResource();
@@ -47,7 +47,7 @@ class SearchTextField extends StatelessWidget {
               state.district.value = newCity!;
               state.searchResource();
             },
-            items: (mappedPlacesCtrl.mappedPlaces[state.state.value] as List)
+            items: (mappedPlacesCtrl.mappedPlaces[state.pstate.value] as List)
                 .map((cityName) {
               return DropdownMenuItem<String>(
                 value: cityName.toString(),
