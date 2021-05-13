@@ -55,7 +55,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
             ),
           );
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Colors.white),
       ),
       body: Obx(() {
         if (notificationController.isLoading.value) {
