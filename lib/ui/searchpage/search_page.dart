@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -126,10 +127,26 @@ class SearchPage extends StatelessWidget {
                                                 launch(
                                                     'tel:${resources[index].phone1}');
                                               }),
-                                          Text(
-                                            resources[index].phone1,
-                                            style: GoogleFonts.poppins(
-                                                fontWeight: FontWeight.w500),
+                                          GestureDetector(
+                                            onTap: () {
+                                              Clipboard.setData(ClipboardData(
+                                                  text:
+                                                      resources[index].phone1));
+                                              Get.rawSnackbar(
+                                                  title:
+                                                      'Phone number copied to clipboard',
+                                                  message: ' ');
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, top: 2),
+                                              child: Text(
+                                                resources[index].phone1,
+                                                style: GoogleFonts.poppins(
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ),
                                           )
                                         ],
                                       ),
