@@ -37,7 +37,8 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (resource != null) {
       ctrl.resource.value = resource!;
-      ctrl.place.value = '$district, $state';
+      ctrl.state.value = state!;
+      ctrl.district.value = district!;
       ctrl.verified.value = isVerified!;
       ctrl.searchResource();
     }
