@@ -56,6 +56,10 @@ class SearchPage extends StatelessWidget {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.data!.resources.isNotEmpty) {
                       final resources = snapshot.data!.resources;
+                      if (ctrl.verified()) {
+                        resources.removeWhere((element) =>
+                            !element.verificationStatus.contains('verified'));
+                      }
                       return ListView.builder(
                         shrinkWrap: true,
                         itemCount: resources.length,

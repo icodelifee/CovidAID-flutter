@@ -17,6 +17,7 @@ class SearchVerified extends StatelessWidget {
             value: ctrl.verified(),
             onChanged: (val) {
               ctrl.verified.value = val!;
+              ctrl.searchResource();
             }),
       ),
     );
