@@ -32,7 +32,11 @@ class SearchAppBar extends StatelessWidget {
                     Gap(12),
                     Row(
                       mainAxisSize: MainAxisSize.min,
-                      children: [SearchResourceSelector(), SearchVerified()],
+                      children: [
+                        SearchResourceSelector(),
+                        Gap(10),
+                        SearchVerified()
+                      ],
                     )
                   ],
                 ))),

@@ -22,6 +22,7 @@ class SearchResourceSelector extends GetView<ResourcesController> {
           },
           value: ctrl.resource(),
           hint: Text('Select Resource'),
+          isExpanded: true,
           decoration:
               AppTheme.inputDecoration('').copyWith(fillColor: Colors.white),
           items: state!
