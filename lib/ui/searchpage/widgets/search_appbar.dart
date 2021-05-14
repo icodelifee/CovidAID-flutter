@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/search_resource_selector.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/search_textfield.dart';
@@ -14,8 +15,9 @@ class SearchAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       pinned: true,
+      forceElevated: true,
       iconTheme: IconThemeData(color: Colors.black),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       title: Text(
         'Search Results',
         style: GoogleFonts.poppins(
