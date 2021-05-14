@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/search_resource_selector.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/search_textfield.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/search_verified.dart';
@@ -17,7 +18,8 @@ class SearchAppBar extends StatelessWidget {
       backgroundColor: Colors.grey[200],
       title: Text(
         'Search Results',
-        style: TextStyle(color: Colors.black),
+        style: GoogleFonts.poppins(
+            color: Colors.black, fontWeight: FontWeight.bold),
       ),
       expandedHeight: 110,
       bottom: PreferredSize(
