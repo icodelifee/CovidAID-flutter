@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lifecoronasafe/ui/aboutpage/about_page.dart';
 import 'package:lifecoronasafe/ui/homepage/widgets/external_links_tile.dart';
 
 class HomePageDrawer extends StatelessWidget {
@@ -79,6 +80,7 @@ class HomePageDrawer extends StatelessWidget {
                     thickness: 0.5,
                   ),
                   ListTile(
+                    onTap: () => Get.to(() => AboutPage()),
                     title: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
