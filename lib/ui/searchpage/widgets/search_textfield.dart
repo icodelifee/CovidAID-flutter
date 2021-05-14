@@ -17,7 +17,7 @@ class SearchTextField extends StatelessWidget {
         Expanded(
           child: DropdownButtonFormField<String>(
             decoration: AppTheme.inputDecoration('Select State')
-                .copyWith(fillColor: Colors.white),
+                .copyWith(fillColor: Colors.grey[200]),
             isExpanded: true,
             value: state.pstate(),
             onChanged: (String? newState) async {
@@ -40,7 +40,7 @@ class SearchTextField extends StatelessWidget {
         Expanded(
           child: DropdownButtonFormField<String>(
             decoration: AppTheme.inputDecoration('Select City')
-                .copyWith(fillColor: Colors.white),
+                .copyWith(fillColor: Colors.grey[200]),
             isExpanded: true,
             value: state.district.value,
             onChanged: (String? newCity) async {

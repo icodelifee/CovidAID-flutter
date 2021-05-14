@@ -24,8 +24,8 @@ class SearchResourceSelector extends GetView<ResourcesController> {
           value: ctrl.resource(),
           hint: Text('Select Resource'),
           isExpanded: true,
-          decoration:
-              AppTheme.inputDecoration('').copyWith(fillColor: Colors.white),
+          decoration: AppTheme.inputDecoration('')
+              .copyWith(fillColor: Colors.grey[200]),
           items: state!
               .map((e) => DropdownMenuItem<String>(
                     value: e.url,
