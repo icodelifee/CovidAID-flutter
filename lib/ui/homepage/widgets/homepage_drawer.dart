@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lifecoronasafe/ui/homepage/widgets/external_links_tile.dart';
 
 class HomePageDrawer extends StatelessWidget {
   const HomePageDrawer({
@@ -34,119 +35,39 @@ class HomePageDrawer extends StatelessWidget {
                 Text('External Links',
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w700,
-                      fontSize: 15,
+                      fontSize: 16,
                     )),
                 Gap(10),
                 Icon(Icons.link)
               ],
             ),
           ),
-          Divider(),
-          ListTile(
-            title: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'assets/images/life.png',
-                  width: 25,
-                  color: Colors.black,
-                ),
-                Gap(20),
-                Text(
-                  'Life Resources',
-                  style: GoogleFonts.poppins(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
+          ExternalLinksTile(
+            url: 'https://life.coronasafe.network/',
+            title: 'Life Resources',
+            asset: 'life',
           ),
-          ListTile(
-            title: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'assets/images/covidstats.png',
-                  width: 25,
-                  color: Colors.black,
-                ),
-                Gap(20),
-                Text(
-                  'COVID-19 Statistics',
-                  style: GoogleFonts.poppins(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
+          ExternalLinksTile(
+            url: 'https://www.covid19india.org/',
+            title: 'COVID-19 Statistics',
+            asset: 'covidstats',
           ),
-          ListTile(
-            title: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'assets/images/oxygen.png',
-                  width: 25,
-                  color: Colors.black,
-                ),
-                Gap(20),
-                Flexible(
-                  child: Text(
-                    'Oxygen Concentration Requirements',
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          ExternalLinksTile(
+            url:
+                'https://charts.mongodb.com/charts-swasth-deman-data-aobsf/public/dashboards/608a951e-5a65-4419-843d-d193674b3673',
+            title: 'Oxygen Concentration Requirements',
+            asset: 'oxygen',
           ),
-          ListTile(
-            title: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'assets/images/fda.png',
-                  width: 25,
-                  color: Colors.black,
-                ),
-                Gap(20),
-                Flexible(
-                  child: Text(
-                    'FDA Officers Contact',
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          ExternalLinksTile(
+            url:
+                'https://docs.google.com/spreadsheets/d/1BEXdf68gxsYsp3Hsc0gUEPbH_wx0kSbu/edit#gid=438108583',
+            title: 'FDA Officers Contact',
+            asset: 'fda',
           ),
-          ListTile(
-            title: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'assets/images/github.png',
-                  width: 30,
-                  color: Colors.black,
-                ),
-                Gap(20),
-                Flexible(
-                  child: Text(
-                    'Github',
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          ExternalLinksTile(
+            url: 'https://github.com/icodelifee/CovidAID-flutter',
+            title: 'Github',
+            asset: 'github',
           ),
           Expanded(
             child: Align(
