@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lifecoronasafe/ui/searchpage/search_page_viewmodel.dart';
 
 class SearchVerified extends StatelessWidget {
@@ -11,15 +13,19 @@ class SearchVerified extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      child: Obx(
-        () => CheckboxListTile(
-            title: Text('Verified'),
-            value: ctrl.verified(),
-            onChanged: (val) {
-              ctrl.verified.value = val!;
-              ctrl.searchResource();
-            }),
-      ),
+      child: Obx(() => CupertinoFormRow(
+            prefix: Text(
+              'Verified',
+              style: GoogleFonts.poppins(),
+            ),
+            child: CupertinoSwitch(
+              value: ctrl.verified(),
+              onChanged: (value) {
+                ctrl.verified.value = value;
+                ctrl.searchResource();
+              },
+            ),
+          )),
     );
   }
 }
