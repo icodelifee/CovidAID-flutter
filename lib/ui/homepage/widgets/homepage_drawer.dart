@@ -67,7 +67,7 @@ class HomePageDrawer extends StatelessWidget {
           ),
           ExternalLinksTile(
             url: 'https://github.com/icodelifee/CovidAID-flutter',
-            title: 'Github',
+            title: 'Source Code',
             asset: 'github',
           ),
           Expanded(
