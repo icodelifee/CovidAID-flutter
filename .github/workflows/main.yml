@@ -26,3 +26,4 @@ jobs:
         uses: distributhor/workflow-webhook@v1
         env:
           webhook_url: "https://api.codemagic.io/hooks/609fc6f1dabcc6697a4cf7bb"
+          webhook_secret: "Y0uR5ecr3t"
