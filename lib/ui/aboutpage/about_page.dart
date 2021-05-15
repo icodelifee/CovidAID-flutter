@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -61,10 +62,29 @@ class AboutPage extends StatelessWidget {
                   fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ),
-          Image.asset(
-            'assets/images/coronasafe.png',
-            width: Get.width / 2,
-            height: Get.height * 0.08,
+          CarouselSlider(
+            options: CarouselOptions(
+              height: 80.0,
+              autoPlay: true,
+              viewportFraction: 1,
+            ),
+            items: [
+              'assets/images/flutter-india.png',
+              'assets/images/gdg.png',
+              'assets/images/coronasafe.png',
+            ].map((i) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                      width: MediaQuery.of(context).size.width / 1.9,
+                      margin: EdgeInsets.symmetric(horizontal: 10.0),
+                      decoration: BoxDecoration(color: Colors.transparent),
+                      child: Image.asset(
+                        i,
+                      ));
+                },
+              );
+            }).toList(),
           ),
           Gap(Get.width * 0.05),
           Text('Contributers',
