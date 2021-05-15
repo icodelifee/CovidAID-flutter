@@ -2,10 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lifecoronasafe/ui/searchpage/search_page_viewmodel.dart';
-import 'package:lifecoronasafe/ui/searchpage/widgets/lottie_loading.dart';
-import 'package:lifecoronasafe/ui/searchpage/widgets/resource_card.dart';
-import 'package:lifecoronasafe/ui/searchpage/widgets/resource_error.dart';
-import 'package:lifecoronasafe/ui/searchpage/widgets/resource_not_found.dart';
+import 'package:lifecoronasafe/ui/searchpage/widgets/alert_me_fab.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/search_appbar.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/search_results.dart';
 
@@ -36,6 +33,7 @@ class SearchPage extends StatelessWidget {
     }
     return Scaffold(
       backgroundColor: Colors.grey[200],
+      floatingActionButton: AlertMeFAB(),
       body: CustomScrollView(
         slivers: <Widget>[
           SearchAppBar(),

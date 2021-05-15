@@ -18,7 +18,10 @@ class FireStoreDb {
   }
 
   static Future<String> updateNotificationSetting(
-      String uid, String docid, bool active) async {
+      // ignore: avoid_positional_boolean_parameters
+      String uid,
+      String docid,
+      bool active) async {
     try {
       fireStoreInstance
           .collection('Users')
