@@ -1,5 +1,7 @@
 # COVIDAID+
 
+[![Codemagic build status](https://api.codemagic.io/apps/609fc6f1dabcc6697a4cf7bb/609fc6f1dabcc6697a4cf7ba/status_badge.svg)](https://codemagic.io/apps/609fc6f1dabcc6697a4cf7bb/609fc6f1dabcc6697a4cf7ba/latest_build)
+
 A new Flutter project.
 
 
