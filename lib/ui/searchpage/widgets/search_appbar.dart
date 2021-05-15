@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/search_resource_selector.dart';
 import 'package:lifecoronasafe/ui/searchpage/widgets/search_textfield.dart';
