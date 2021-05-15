@@ -25,4 +25,4 @@ jobs:
       - name: Webhook
         uses: distributhor/workflow-webhook@v1
         with:
-         url: "https://api.codemagic.io/hooks/609fc6f1dabcc6697a4cf7bb"
+         webhook_url: "https://api.codemagic.io/hooks/609fc6f1dabcc6697a4cf7bb"
