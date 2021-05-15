@@ -1,16 +1,28 @@
-# lifecoronasafe
+# COVIDAID+
 
 A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Build Setup
+``` bash
 
-A few resources to get you started if this is your first Flutter project:
+# install dependencies
+$ flutter pub get
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+# run debug mode
+$ flutter run
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# run release mode
+$ flutter run --release
+
+# build app bundle
+$ flutter build appbundle
+
+# build apk
+$ flutter build apk
+
+```
+
+  
+
+For detailed explanation on how things work, check out [Flutter docs](https://flutter.dev/docs).
