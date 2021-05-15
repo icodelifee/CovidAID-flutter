@@ -16,6 +16,7 @@ class SearchAppBar extends StatelessWidget {
     return SliverAppBar(
       pinned: true,
       forceElevated: true,
+      elevation: 3,
       iconTheme: IconThemeData(color: Colors.black),
       backgroundColor: Colors.white,
       title: Text(
